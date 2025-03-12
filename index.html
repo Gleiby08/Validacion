@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario de Registro</title>
+  <style>
+      body {
+          font-family: Arial, sans-serif;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+          margin: 0;
+          background-image: url('https://superdevresources.com/wp-content/uploads/2015/12/new-york-background.jpg');
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+      }
+      .container {
+          background-color: rgba(255, 255, 255, 0.2); /* Transparencia con fondo blanco */
+          backdrop-filter: blur(10px); /* Efecto de desenfoque */
+          padding: 30px;
+          border-radius: 15px;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          width: 500px;
+          border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+      .form-group {
+          margin-bottom: 15px;
+      }
+      input {
+          width: 100%;
+          padding: 10px;
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          border-radius: 4px;
+          background-color: rgba(255, 255, 255, 0.2);
+          color: white;
+      }
+      input::placeholder {
+          color: rgba(255, 255, 255, 0.7);
+      }
+      .error {
+          color: #ff0000;
+          font-size: 0.8em;
+          margin-top: 5px;
+      }
+      button {
+          width: 100%;
+          padding: 10px;
+          background-color: rgba(67, 174, 224, 0.7);
+          color: white;
+            border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+      }
+      button:hover {
+          background-color: rgba(76, 175, 80, 0.9);
+      }
+  </style>
+</head>
+<body>
+  <!-- El resto del código HTML y JavaScript permanece igual que en el ejemplo anterior -->
+  <div class="container">
+      <form id="registrationForm">
+          <div class="form-group">
+              <input type="text" id="username" placeholder="Nombre de Usuario" required>
+              <div id="usernameError" class="error"></div>
+          </div>
+          
+          <div class="form-group">
+              <input type="email" id="email" placeholder="Correo Electrónico" required>
+              <div id="emailError" class="error"></div>
+          </div>
+          
+          <div class="form-group">
+              <input type="tel" id="phone" placeholder="Número de Teléfono" required>
+              <div id="phoneError" class="error"></div>
+          </div>
+          
+          <div class="form-group">
+              <input type="password" id="password" placeholder="Contraseña" required>
+              <div id="passwordError" class="error"></div>
+          </div>
+          
+          <div class="form-group">
+              <input type="password" id="confirmPassword" placeholder="Confirmar Contraseña" required>
+              <div id="confirmPasswordError" class="error"></div>
+          </div>
+          
+          <button type="submit">Registrarse</button>
+      </form>
+  </div>
+
+  <script>
+      // El script permanece igual que en el ejemplo anterior
+      document.getElementById('registrationForm').addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          // Reset previous error messages
+          const errorElements = document.querySelectorAll('.error');
+          console.log(errorElements)
+          errorElements.forEach(el => el.textContent = '');
+          
+          // Validación de nombre de usuario
+          const username = document.getElementById('username');
+          if (username.value.length < 3) {
+              document.getElementById('usernameError').textContent = 'El nombre de usuario debe tener al menos 3 caracteres';
+              return;
+          }
+          
+          // Validación de correo electrónico
+          const email = document.getElementById('email');
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(email.value)) {
+              document.getElementById('emailError').textContent = 'Ingrese un correo electrónico válido';
+              return;
+          }
+          
+          // Validación de número de teléfono
+          const phone = document.getElementById('phone');
+          const phoneRegex = /^[0-9]{10}$/;
+          if (!phoneRegex.test(phone.value)) {
+              document.getElementById('phoneError').textContent = 'Ingrese un número de teléfono válido (10 dígitos)';
+              return;
+          }
+          
+          // Validación de contraseña
+          const password = document.getElementById('password');
+          const confirmPassword = document.getElementById('confirmPassword');
+          
+          if (password.value.length < 6) {
+              document.getElementById('passwordError').textContent = 'La contraseña debe tener al menos 6 caracteres';
+              return;
+          }
+          
+          if (password.value !== confirmPassword.value) {
+              document.getElementById('confirmPasswordError').textContent = 'Las contraseñas no coinciden';
+              return;
+          }
+          
+          // Si todas las validaciones pasan, mostrar mensaje de éxito
+          alert('¡Registro exitoso!');
+          this.reset();
+      });
+  </script>
+</body>
