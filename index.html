@@ -111,6 +111,9 @@ button:hover {
     <div class="form-group">
         <input type="email" id="email" placeholder="Correo Electrónico" required>
         <div id="emailError" class="error"></div>
+		<div id="emailError" class="error">
+			 El correo electrónico debe contener el símbolo "@"
+		</div>
     </div>
     
     <div class="form-group">
@@ -131,6 +134,7 @@ button:hover {
         <input type="password" id="confirmPassword" placeholder="Confirmar Contraseña" required>
         <div id="confirmPasswordMessage" class="dynamic-message">Las contraseñas no coinciden</div>
         <div id="confirmPasswordError" class="error"></div>
+		
     </div>
     
     <button type="submit" id="form-btn">Registrarse</button>
@@ -373,7 +377,7 @@ const passwordInput = document.getElementById('password');
 const passwordMessage = document.getElementById('passwordMessage');
 const confirmPasswordInput = document.getElementById('confirmPassword');
 const confirmPasswordMessage = document.getElementById('confirmPasswordMessage');
-
+const emalMessage = document.getElementById('emailMessage');
 // Función para validar nombre de usuario en tiempo real
 function validarNombreUsuario() {
     const username = usernameInput.value;
@@ -412,6 +416,67 @@ function validarConfirmacionContrasena() {
         // Si coinciden, ocultar mensaje
         confirmPasswordMessage.style.display = 'none';
     }
+
+//Funcion para validar contraseña en tiempo real
+  // Obtener referencias a los elementos
+  const emailInput = document.getElementById('email');
+      const emailError = document.getElementById('emailError');
+      const submitBtn = document.getElementById('submitBtn');
+      const emailForm = document.getElementById('emailForm');
+
+      // Función de validación de correo electrónico
+      function validateEmail(email) {
+          // Validaciones en tiempo real
+          const hasAtSymbol = email.includes('@');
+          const notOnlyAtSymbol = email.replace('@', '').trim().length > 0;
+          const notStartWithAt = !email.startsWith('@');
+          const notEndWithAt = !email.endsWith('@');
+
+          return hasAtSymbol && 
+                 notOnlyAtSymbol && 
+                 notStartWithAt && 
+                 notEndWithAt;
+      }
+
+      // Función para manejar la validación en tiempo real
+      function handleEmailValidation() {
+          const email = emailInput.value.trim();
+          
+          if (email === '') {
+              // Campo vacío
+              emailInput.classList.remove('invalid');
+              emailError.style.opacity = '0';
+              submitBtn.disabled = true;
+              return;
+          }
+
+          if (!validateEmail(email)) {
+              // Mostrar error
+              emailInput.classList.add('invalid');
+              emailError.style.opacity = '1';
+              submitBtn.disabled = true;
+          } else {
+              // Validación correcta
+              emailInput.classList.remove('invalid');
+              emailError.style.opacity = '0';
+              submitBtn.disabled = false;
+          }
+      }
+
+      // Escuchar eventos de entrada en tiempo real
+      emailInput.addEventListener('input', handleEmailValidation);
+
+      // Manejar el envío del formulario
+      emailForm.addEventListener('submit', function(event) {
+          event.preventDefault();
+          
+          const email = emailInput.value.trim();
+          
+          if (validateEmail(email)) {
+              alert('Correo electrónico válido: ' + email);
+              // Aquí podrías enviar el formulario o hacer otras acciones
+          }
+      });
 }
 
 // Añadir eventos de escucha para validación en tiempo real
@@ -440,7 +505,7 @@ document.getElementById('registrationForm').addEventListener('submit', function(
     const email = document.getElementById('email');
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email.value)) {
-        document.getElementById('emailError').textContent = 'Ingrese un correo electrónico válido';
+        document.getElementById('emailError').textContent = 'El correo electrónico debe contener @ y .';
         return;
     }
     
