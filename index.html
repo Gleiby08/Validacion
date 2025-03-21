@@ -1,558 +1,509 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Registro</title>
-<style>
-body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-image: url('https://superdevresources.com/wp-content/uploads/2015/12/new-york-background.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Meta para responsividad -->
+    <title>Registro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('https://superdevresources.com/wp-content/uploads/2015/12/new-york-background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
 
-.titulo-registro {
-    color: white;
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 2.5em;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-    letter-spacing: 2px;
-}
+        .titulo-registro {
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            letter-spacing: 2px;
+        }
 
-.container {
-    background-color: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 500px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-}
-.form-group {
-    margin-bottom: 15px;
-}
-input, select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 4px;
-    background-color: rgba(255, 255, 255, 0.2);
-    color: black;
-}
-input::placeholder, select {
-    color: rgba(0, 0, 0, 0.7);
-}
-.telefono-container {
-    display: flex;
-    gap: 10px;
-}
-.telefono-container select {
-    width: 30%;
-}
-.telefono-container input {
-    width: 70%;
-}
-.error {
-    color: #ff0000;
-    font-size: 0.8em;
-    margin-top: 5px;
-}
-.dynamic-message {
-    color: oklch(0.577 0.245 27.325);
-    font-size: 0.8em;
-    margin-top: 5px;
-}
-button {
-    width: 100%;
-    padding: 10px;
-    background-color: rgba(67, 174, 224, 0.7);
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-button:hover {
-    background-color: rgba(76, 175, 80, 0.9);
-}
-@media (max-width: 640px) {
-    .container {
-        width: 90%;
-    }
-    .telefono-container {
-        flex-direction: column;
-    }
-    .telefono-container select, 
-    .telefono-container input {
-        width: 100%;
-    }
-}
-</style>
+        .container {
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 90%; /* Cambiado a 90% para mejor responsividad */
+            max-width: 400px; /* Ancho máximo reducido para móviles */
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: black;
+        }
+
+        input::placeholder, select {
+            color: rgba(0, 0, 0, 0.7);
+        }
+
+        .telefono-container {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap; /* Permite que los elementos se ajusten en móviles */
+        }
+
+        .telefono-container select {
+            flex: 1 1 30%; /* Flexibilidad para el select */
+            min-width: 100px; /* Ancho mínimo para el select */
+        }
+
+        .telefono-container input {
+            flex: 1 1 70%; /* Flexibilidad para el input */
+            min-width: 150px; /* Ancho mínimo para el input */
+        }
+
+        .error {
+            color: #ff0000;
+            font-size: 0.8em;
+            margin-top: 5px;
+        }
+
+        .dynamic-message {
+            color: oklch(0.577 0.245 27.325);
+            font-size: 0.8em;
+            margin-top: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: rgba(67, 174, 224, 0.7);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: rgba(76, 175, 80, 0.9);
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 20px; /* Reduce el padding en móviles */
+            }
+            .titulo-registro {
+                font-size: 2em; /* Reduce el tamaño de la fuente en móviles */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .titulo-registro {
+                font-size: 1.8em; /* Ajusta el tamaño de la fuente para pantallas muy pequeñas */
+            }
+            .telefono-container {
+                flex-direction: column; /* Cambia a columna en móviles muy pequeños */
+            }
+            .telefono-container select, 
+            .telefono-container input {
+                width: 100%; /* Asegura que ocupen el 100% del ancho */
+                margin-bottom: 10px; /* Espaciado entre elementos */
+            }
+        }
+    </style>
 </head>
 <body>
-<h2 class="titulo-registro">Registro</h2>
+    <h2 class="titulo-registro">Registro</h2>
 
-<div class="container">
-<form id="registrationForm">
-    <div class="form-group">
-        <input type="text" id="username" placeholder="Nombre de Usuario" required>
-        <div id="usernameMessage" class="dynamic-message">El nombre de usuario debe tener al menos 3 caracteres</div>
-        <div id="usernameError" class="error"></div>
+    <div class="container">
+        <form id="registrationForm">
+            <div class="form-group">
+                <input type="text" id="username" placeholder="Nombre de Usuario" required>
+                <div id="usernameMessage" class="dynamic-message">El nombre de usuario debe tener al menos 3 caracteres</div>
+                <div id="usernameError" class="error" aria-live="polite"></div>
+            </div>
+            
+            <div class="form-group">
+                <input type="email" id="email" placeholder="Correo Electrónico" required>
+                <div id="emailError" class="error" aria-live="polite"></div>
+            </div>
+            
+            <div class="form-group">
+                <div class="telefono-container">
+                    <select id="country-code" required></select>
+                    <input type="tel" id="phone" placeholder="Número de Teléfono" required>
+                </div>
+                <div id="phoneError" class="error" aria-live="polite"></div>
+            </div>
+            
+            <div class="form-group">
+                <input type="password" id="password" placeholder="Contraseña" required>
+                <div id="passwordMessage" class="dynamic-message">La contraseña debe tener al menos 6 caracteres</div>
+                <div id="passwordError" class="error" aria-live="polite"></div>
+            </div>
+            
+            <div class="form-group">
+                <input type="password" id="confirmPassword" placeholder="Confirmar Contraseña" required>
+                <div id="confirmPasswordMessage" class="dynamic-message">Las contraseñas no coinciden</div>
+                <div id="confirmPasswordError" class="error" aria-live="polite"></div>
+            </div>
+            
+            <button type="submit" id="form-btn">Registrarse</button>
+        </form>
     </div>
-    
-    <div class="form-group">
-        <input type="email" id="email" placeholder="Correo Electrónico" required>
-        <div id="emailError" class="error"></div>
-		<div id="emailError" class="error">
-			 El correo electrónico debe contener el símbolo "@"
-		</div>
-    </div>
-    
-    <div class="form-group">
-        <div class="telefono-container">
-            <select id="country-code" required></select>
-            <input type="tel" id="phone" placeholder="Número de Teléfono" required>
-        </div>
-        <div id="phoneError" class="error"></div>
-    </div>
-    
-    <div class="form-group">
-        <input type="password" id="password" placeholder="Contraseña" required>
-        <div id="passwordMessage" class="dynamic-message">La contraseña debe tener al menos 6 caracteres</div>
-        <div id="passwordError" class="error"></div>
-    </div>
-    
-    <div class="form-group">
-        <input type="password" id="confirmPassword" placeholder="Confirmar Contraseña" required>
-        <div id="confirmPasswordMessage" class="dynamic-message">Las contraseñas no coinciden</div>
-        <div id="confirmPasswordError" class="error"></div>
-		
-    </div>
-    
-    <button type="submit" id="form-btn">Registrarse</button>
-</form>
-</div>
 
-<script>
-// Datos de países usando innerHTML split
-const countriesData = `
-        Algeria,213
-		Andorra,376
-		Angola,244
-		Anguilla,1264
-		Antigua &amp; Barbuda,1268
-		Argentina,54
-		Armenia,374
-		Aruba,297
-		Australia,61
-		Austria,43
-		Azerbaijan,994
-		Bahamas,1242
-		Bahrain,973
-		Bangladesh,880
-		Barbados,1246
-		Belarus,375
-		Belgium,32
-		Belize,501
-		Benin,229
-		Bermuda,1441
-		Bhutan,975
-		Bolivia,591
-		Bosnia Herzegovina,387
-		Botswana,267
-		Brazil,55
-		Brunei,673
-		Bulgaria,359
-		Burkina Faso,226
-		Burundi,257
-		Cambodia,855
-		Cameroon,237
-		Canada,1
-		Cape Verde Islands,238
-		Cayman Islands,1345
-		Central African Republic,236
-		Chile,56
-		China,86
-		Colombia,57
-		Comoros,269
-		Congo,242
-		Cook Islands,682
-		Costa Rica,506
-		Croatia,385
-		Cuba,53
-		Cyprus North,90392
-		Cyprus South,357
-		Czech Republic,42
-		Denmark,45
-		Djibouti,253
-		Dominica,1809
-		Dominican Republic,1809
-		Ecuador,593
-		Egypt,20
-		El Salvador,503
-		Equatorial Guinea,240
-		Eritrea,291
-		Estonia,372
-		Ethiopia,251
-		Falkland Islands,500
-		Faroe Islands,298
-		Fiji,679
-		Finland,358
-		France,33
-		French Guiana,594
-		French Polynesia,689
-		Gabon,241
-		Gambia,220
-		Georgia,7880
-		Germany,49
-		Ghana,233
-		Gibraltar,350
-		Greece,30
-		Greenland,299
-		Grenada,1473
-		Guadeloupe,590
-		Guam,671
-		Guatemala,502
-		Guinea,224
-		Guinea - Bissau,245
-		Guyana,592
-		Haiti,509
-		Honduras,504
-		Hong Kong,852
-		Hungary,36
-		Iceland,354
-		India,91
-		Indonesia,62
-		Iran,98
-		Iraq,964
-		Ireland,353
-		Israel,972
-		Italy,39
-		Jamaica,1876
-		Japan,81
-		Jordan,962
-		Kazakhstan,7
-		Kenya,254
-		Kiribati,686
-		Korea North,850
-		Korea South,82
-		Kuwait,965
-		Kyrgyzstan,996
-		Laos,856
-		Latvia,371
-		Lebanon,961
-		Lesotho,266
-		Liberia,231
-		Libya,218
-		Liechtenstein,417
-		Lithuania,370
-		Luxembourg,352
-		Macao,853
-		Macedonia,389
-		Madagascar,261
-		Malawi,265
-		Malaysia,60
-		Maldives,960
-		Mali,223
-		Malta,356
-		Marshall Islands,692
-		Martinique,596
-		Mauritania,222
-		Mayotte,269
-		Mexico,52
-		Micronesia,691
-		Moldova,373
-		Monaco,377
-		Mongolia,976
-		Montserrat,1664
-		Morocco,212
-		Mozambique,258
-		Myanmar,95
-		Namibia,264
-		Nauru,674
-		Nepal,977
-		Netherlands,31
-		New Caledonia,687
-		New Zealand,64
-		Nicaragua,505
-		Niger,227
-		Nigeria,234
-		Niue,683
-		Norfolk Islands,672
-		Northern Marianas,670
-		Norway,47
-		Oman,968
-	    Palau,680
-		Panama,507
-		Papua New Guinea,675
-		Paraguay,595
-		Peru,51
-		Philippines,63
-		Poland,48
-		Portugal,351
-		Puerto Rico,1787
-		Qatar,974
-		Reunion,262
-		Romania,40
-		Russia,7
-		Rwanda,250
-		San Marino,378
-		Sao Tome &amp; Principe,239
-		Saudi Arabia,966
-		Senegal,221
-		Serbia,381
-		Seychelles,248
-		Sierra Leone,232
-		Singapore,65
-		Slovak Republic,421
-	    Slovenia,386
-		Solomon Islands,677
-		Somalia,252
-		South Africa,27
-		Spain,34
-		Sri Lanka,94
-		St. Helena,290
-		St. Kitts,1869
-	    St. Lucia,1758
-		Sudan,249
-		Suriname,597
-		Swaziland,268
-		Sweden,46
-		Switzerland,41
-		Syria,963
-		Taiwan,886
-		Tajikstan,7
-		Thailand,66
-		Togo,228
-		Tonga,676
-		Tobago,1868
-		Tunisia,216
-		Turkey,90
-		Turkmenistan,7
-		Turkmenistan,993
-		Turks &amp; Caicos Islands,1649
-		Tuvalu,688
-		Uganda,256
-		UK,44
-	    Ukraine,380
-		United Arab Emirates,971
-		Uruguay,598
-		USA,1)
-		Uzbekistan,7
-		 Vanuatu,678
-		Vatican City,379
-		Venezuela,58)
-		 Vietnam,84
-		Virgin Islands - British ,1284
-		Virgin Islands - US,1340)
-		Wallis &amp; Futuna,681)
-		Yemen (North),969
-		Yemen (South),967
-		Zambia,260
-		Zimbabwe,263
-  `.trim().split('\n');
+    <script>
+        const countriesData = `
+            Algeria,213
+            Andorra,376
+            Angola,244
+            Anguilla,1264
+            Antigua & Barbuda,1268
+            Argentina,54
+            Armenia,374
+            Aruba,297
+            Australia,61
+            Austria,43
+            Azerbaijan,994
+            Bahamas,1242
+            Bahrain,973
+            Bangladesh,880
+            Barbados,1246
+            Belarus,375
+            Belgium,32
+            Belize,501
+            Benin,229
+            Bermuda,1441
+            Bhutan,975
+            Bolivia,591
+            Bosnia Herzegovina,387
+            Botswana,267
+            Brazil,55
+            Brunei,673
+            Bulgaria,359
+            Burkina Faso,226
+            Burundi,257
+            Cambodia,855
+            Cameroon,237
+            Canada,1
+            Cape Verde Islands,238
+            Cayman Islands,1345
+            Central African Republic,236
+            Chile,56
+            China,86
+            Colombia,57
+            Comoros,269
+            Congo,242
+            Cook Islands,682
+            Costa Rica,506
+            Croatia,385
+            Cuba,53
+            Cyprus North,90392
+            Cyprus South,357
+            Czech Republic,42
+            Denmark,45
+            Djibouti,253
+            Dominica,1809
+            Dominican Republic,1809
+            Ecuador,593
+            Egypt,20
+            El Salvador,503
+            Equatorial Guinea,240
+            Eritrea,291
+            Estonia,372
+            Ethiopia,251
+            Falkland Islands,500
+            Faroe Islands,298
+            Fiji,679
+            Finland,358
+            France,33
+            French Guiana,594
+            French Polynesia,689
+            Gabon,241
+            Gambia,220
+            Georgia,7880
+            Germany,49
+            Ghana,233
+            Gibraltar,350
+            Greece,30
+            Greenland,299
+            Grenada,1473
+            Guadeloupe,590
+            Guam,671
+            Guatemala,502
+            Guinea,224
+            Guinea - Bissau,245
+            Guyana,592
+            Haiti,509
+            Honduras,504
+            Hong Kong,852
+            Hungary,36
+            Iceland,354
+            India,91
+            Indonesia,62
+            Iran,98
+            Iraq,964
+            Ireland,353
+            Israel,972
+            Italy,39
+            Jamaica,1876
+            Japan,81
+            Jordan,962
+            Kazakhstan,7
+            Kenya,254
+            Kiribati,686
+            Korea North,850
+            Korea South,82
+            Kuwait,965
+            Kyrgyzstan,996
+            Laos,856
+            Latvia,371
+            Lebanon,961
+            Lesotho,266
+            Liberia,231
+            Libya,218
+            Liechtenstein,417
+            Lithuania,370
+            Luxembourg,352
+            Macao,853
+            Macedonia,389
+            Madagascar,261
+            Malawi,265
+            Malaysia,60
+            Maldives,960
+            Mali,223
+            Malta,356
+            Marshall Islands,692
+            Martinique,596
+            Mauritania,222
+            Mayotte,269
+            Mexico,52
+            Micronesia,691
+            Moldova,373
+            Monaco,377
+            Mongolia,976
+            Montserrat,1664
+            Morocco,212
+            Mozambique,258
+            Myanmar,95
+            Namibia,264
+            Nauru,674
+            Nepal,977
+            Netherlands,31
+            New Caledonia,687
+            New Zealand,64
+            Nicaragua,505
+            Niger,227
+            Nigeria,234
+            Niue,683
+            Norfolk Islands,672
+            Northern Marianas,670
+            Norway,47
+            Oman,968
+            Palau,680
+            Panama,507
+            Papua New Guinea,675
+            Paraguay,595
+            Peru,51
+            Philippines,63
+            Poland,48
+            Portugal,351
+            Puerto Rico,1787
+            Qatar,974
+            Reunion,262
+            Romania,40
+            Russia,7
+            Rwanda,250
+            San Marino,378
+            Sao Tome & Principe,239
+            Saudi Arabia,966
+            Senegal,221
+            Serbia,381
+            Seychelles,248
+            Sierra Leone,232
+            Singapore,65
+            Slovak Republic,421
+            Slovenia,386
+            Solomon Islands,677
+            Somalia,252
+            South Africa,27
+            Spain,34
+            Sri Lanka,94
+            St. Helena,290
+            St. Kitts,1869
+            St. Lucia,1758
+            Sudan,249
+            Suriname,597
+            Swaziland,268
+            Sweden,46
+            Switzerland,41
+            Syria,963
+            Taiwan,886
+            Tajikstan,7
+            Thailand,66
+            Togo,228
+            Tonga,676
+            Tobago,1868
+            Tunisia,216
+            Turkey,90
+            Turkmenistan,7
+            Turks & Caicos Islands,1649
+            Tuvalu,688
+            Uganda,256
+            UK,44
+            Ukraine,380
+            United Arab Emirates,971
+            Uruguay,598
+            USA,1
+            Uzbekistan,7
+            Vanuatu,678
+            Vatican City,379
+            Venezuela,58
+            Vietnam,84
+            Virgin Islands - British,1284
+            Virgin Islands - US,1340
+            Wallis & Futuna,681
+            Yemen (North),969
+            Yemen (South),967
+            Zambia,260
+            Zimbabwe,263
+        `.trim().split('\n');
 
-// Obtener el select de países
-const countrySelect = document.getElementById('country-code');
+        const countrySelect = document.getElementById('country-code');
+        countrySelect.innerHTML = '<option value="" disabled selected>Selecciona un país</option>' + 
+            countriesData.map(country => {
+                const [name, code] = country.split(',');
+                return `<option value="${code}">${name}</option>`;
+            }).join('');
 
-// Generar opciones de país dinámicamente
-countrySelect.innerHTML = '<option value="" disabled selected>Selecciona un país</option>' + 
-    countriesData.map(country => {
-        const [name, code] = country.split(',');
-        return `<option value="${code}">${name}</option>`;
-    }).join('');
+        const usernameInput = document.getElementById('username');
+        const usernameMessage = document.getElementById('usernameMessage');
+        const passwordInput = document.getElementById('password');
+        const passwordMessage = document.getElementById('passwordMessage');
+        const confirmPasswordInput = document.getElementById('confirmPassword');
+        const confirmPasswordMessage = document.getElementById('confirmPasswordMessage');
+        const emailInput = document.getElementById('email');
+        const emailError = document.getElementById('emailError');
 
-// Obtener elementos del DOM
-const usernameInput = document.getElementById('username');
-const usernameMessage = document.getElementById('usernameMessage');
-const passwordInput = document.getElementById('password');
-const passwordMessage = document.getElementById('passwordMessage');
-const confirmPasswordInput = document.getElementById('confirmPassword');
-const confirmPasswordMessage = document.getElementById('confirmPasswordMessage');
-const emalMessage = document.getElementById('emailMessage');
-// Función para validar nombre de usuario en tiempo real
-function validarNombreUsuario() {
-    const username = usernameInput.value;
-    
-    // Si el campo está vacío o tiene menos de 3 caracteres, mostrar mensaje
-    if (username.length === 0 || username.length < 3) {
-        usernameMessage.style.display = 'block';
-    } else {
-        // Si tiene 3 o más caracteres, ocultar mensaje
-        usernameMessage.style.display = 'none';
-    }
-}
+        function setError(element, message) {
+            element.textContent = message;
+            element.style.display = 'block';
+        }
 
-// Función para validar contraseña en tiempo real
-function validarContrasena() {
-    const password = passwordInput.value;
-    
-    // Si el campo está vacío o tiene menos de 6 caracteres, mostrar mensaje
-    if (password.length === 0 || password.length < 6) {
-        passwordMessage.style.display = 'block';
-    } else {
-        // Si tiene 6 o más caracteres, ocultar mensaje
-        passwordMessage.style.display = 'none';
-    }
-}
+        function clearError(element) {
+            element.textContent = '';
+            element.style.display = 'none';
+        }
 
-// Función para validar confirmación de contraseña en tiempo real
-function validarConfirmacionContrasena() {
-    const password = passwordInput.value;
-    const confirmPassword = confirmPasswordInput.value;
-    
-    // Si las contraseñas no coinciden, mostrar mensaje
-    if (password !== confirmPassword && confirmPassword.length > 0) {
-        confirmPasswordMessage.style.display = 'block';
-    } else {
-        // Si coinciden, ocultar mensaje
-        confirmPasswordMessage.style.display = 'none';
-    }
+        function validarNombreUsuario() {
+            const username = usernameInput.value;
+            if (username.length < 3) {
+                setError(document.getElementById('usernameError'), 'El nombre de usuario debe tener al menos 3 caracteres');
+            } else {
+                clearError(document.getElementById('usernameError'));
+            }
+        }
 
-//Funcion para validar contraseña en tiempo real
-  // Obtener referencias a los elementos
-  const emailInput = document.getElementById('email');
-      const emailError = document.getElementById('emailError');
-      const submitBtn = document.getElementById('submitBtn');
-      const emailForm = document.getElementById('emailForm');
+        function validarContrasena() {
+            const password = passwordInput.value;
+            if (password.length < 6) {
+                setError(document.getElementById('passwordError'), 'La contraseña debe tener al menos 6 caracteres');
+            } else {
+                clearError(document.getElementById('passwordError'));
+            }
+        }
 
-      // Función de validación de correo electrónico
-      function validateEmail(email) {
-          // Validaciones en tiempo real
-          const hasAtSymbol = email.includes('@');
-          const notOnlyAtSymbol = email.replace('@', '').trim().length > 0;
-          const notStartWithAt = !email.startsWith('@');
-          const notEndWithAt = !email.endsWith('@');
+        function validarConfirmacionContrasena() {
+            const password = passwordInput.value;
+            const confirmPassword = confirmPasswordInput.value;
+            if (password !== confirmPassword && confirmPassword.length > 0) {
+                setError(document.getElementById('confirmPasswordError'), 'Las contraseñas no coinciden');
+            } else {
+                clearError(document.getElementById('confirmPasswordError'));
+            }
+        }
 
-          return hasAtSymbol && 
-                 notOnlyAtSymbol && 
-                 notStartWithAt && 
-                 notEndWithAt;
-      }
+        function validarCorreoElectronico() {
+            const email = emailInput.value.trim();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (email.length === 0) {
+                setError(emailError, 'El correo electrónico es obligatorio');
+            } else if (!emailRegex.test(email)) {
+                setError(emailError, 'El correo electrónico debe contener @ y .');
+            } else {
+                clearError(emailError);
+            }
+        }
 
-      // Función para manejar la validación en tiempo real
-      function handleEmailValidation() {
-          const email = emailInput.value.trim();
-          
-          if (email === '') {
-              // Campo vacío
-              emailInput.classList.remove('invalid');
-              emailError.style.opacity = '0';
-              submitBtn.disabled = true;
-              return;
-          }
+        usernameInput.addEventListener('input', validarNombreUsuario);
+        passwordInput.addEventListener('input', validarContrasena);
+        confirmPasswordInput.addEventListener('input', validarConfirmacionContrasena);
+        emailInput.addEventListener('input', validarCorreoElectronico);
 
-          if (!validateEmail(email)) {
-              // Mostrar error
-              emailInput.classList.add('invalid');
-              emailError.style.opacity = '1';
-              submitBtn.disabled = true;
-          } else {
-              // Validación correcta
-              emailInput.classList.remove('invalid');
-              emailError.style.opacity = '0';
-              submitBtn.disabled = false;
-          }
-      }
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const errorElements = document.querySelectorAll('.error');
+            errorElements.forEach(clearError);
 
-      // Escuchar eventos de entrada en tiempo real
-      emailInput.addEventListener('input', handleEmailValidation);
+            const username = usernameInput.value;
+            if (username.length < 3) {
+                setError(document.getElementById('usernameError'), 'El nombre de usuario debe tener al menos 3 caracteres');
+                return;
+            }
 
-      // Manejar el envío del formulario
-      emailForm.addEventListener('submit', function(event) {
-          event.preventDefault();
-          
-          const email = emailInput.value.trim();
-          
-          if (validateEmail(email)) {
-              alert('Correo electrónico válido: ' + email);
-              // Aquí podrías enviar el formulario o hacer otras acciones
-          }
-      });
-}
+            const email = emailInput.value;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                setError(emailError, 'El correo electrónico debe contener @ y .');
+                return;
+            }
 
-// Añadir eventos de escucha para validación en tiempo real
-usernameInput.addEventListener('input', validarNombreUsuario);
-passwordInput.addEventListener('input', validarContrasena);
-confirmPasswordInput.addEventListener('input', validarConfirmacionContrasena);
-passwordInput.addEventListener('input', validarConfirmacionContrasena);
+            const countryCode = countrySelect.value;
+            if (countryCode === '') {
+                setError(document.getElementById('phoneError'), 'Seleccione un país');
+                return;
+            }
 
-// Inicialmente mostrar los mensajes
-usernameMessage.style.display = 'block';
-passwordMessage.style.display = 'block';
-confirmPasswordMessage.style.display = 'none';
+            const phone = document.getElementById('phone').value;
+            if (phone.trim() === '') {
+                setError(document.getElementById('phoneError'), 'Ingrese un número de teléfono');
+                return;
+            }
 
-document.getElementById('registrationForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const errorElements = document.querySelectorAll('.error');
-    errorElements.forEach(el => el.textContent = '');
-    
-    const username = document.getElementById('username');
-    if (username.value.length < 3) {
-        document.getElementById('usernameError').textContent = 'El nombre de usuario debe tener al menos 3 caracteres';
-        return;
-    }
-    
-    const email = document.getElementById('email');
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email.value)) {
-        document.getElementById('emailError').textContent = 'El correo electrónico debe contener @ y .';
-        return;
-    }
-    
-    const countryCode = document.getElementById('country-code');
-    if (countryCode.value === '') {
-        document.getElementById('phoneError').textContent = 'Seleccione un país';
-        return;
-    }
-    
-    const phone = document.getElementById('phone');
-    if (phone.value.trim() === '') {
-        document.getElementById('phoneError').textContent = 'Ingrese un número de teléfono';
-        return;
-    }
-    
-    // Validación de teléfono más flexible
-    const phoneRegex = /^\d+$/;
-    if (!phoneRegex.test(phone.value)) {
-        document.getElementById('phoneError').textContent = 'Solo se permiten números';
-        return;
-    }
-    
-    const password = document.getElementById('password');
-    const confirmPassword = document.getElementById('confirmPassword');
-    
-    if (password.value.length < 6) {
-        document.getElementById('passwordError').textContent = 'La contraseña debe tener al menos 6 caracteres';
-        return;
-    }
-    
-    if (password.value !== confirmPassword.value) {
-        document.getElementById('confirmPasswordError').textContent = 'Las contraseñas no coinciden';
-        return;
-    }
-    
-    // Obtener el nombre del país seleccionado
-    const selectedCountry = countryCode.options[countryCode.selectedIndex].text;
-    const fullPhoneNumber = `+${countryCode.value}${phone.value}`;
-    
-    alert(`¡Registro exitoso!\nPaís: ${selectedCountry}\nNúmero de teléfono: ${fullPhoneNumber}`);
-    this.reset();
-    
-    // Restablecer los mensajes después del reset
-    usernameMessage.style.display = 'block';
-    passwordMessage.style.display = 'block';
-    confirmPasswordMessage.style.display = 'none';
-});
-</script>
+            const phoneRegex = /^\d+$/;
+            if (!phoneRegex.test(phone)) {
+                setError(document.getElementById('phoneError'), 'Solo se permiten números');
+                return;
+            }
+
+            const password = passwordInput.value;
+            const confirmPassword = confirmPasswordInput.value;
+            if (password.length < 6) {
+                setError(document.getElementById('passwordError'), 'La contraseña debe tener al menos 6 caracteres');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                setError(document.getElementById('confirmPasswordError'), 'Las contraseñas no coinciden');
+                return;
+            }
+
+            const selectedCountry = countrySelect.options[countrySelect.selectedIndex].text;
+            const fullPhoneNumber = `+${countryCode}${phone}`;
+            alert(`¡Registro exitoso!\nPaís: ${selectedCountry}\nNúmero de teléfono: ${fullPhoneNumber}`);
+            this.reset();
+        });
+    </script>
 </body>
 </html>
